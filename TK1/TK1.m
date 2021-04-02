@@ -4,17 +4,22 @@
 % LUX = b
 % Ly = b => Forward Substitution
 % Ux = y => Backward Substitution
-A = bmatrix(100);
-b = x(100);
-[L,U, counter] = LUFac(A);
 
-counter
 
-y = ForwardSolution(L, b);
-yaprox = Solution(U, y);
+for k=1:3
+  n = 10 * 2**k;
 
-% yaprox = bmatrix(10)\x(10);
-yexact = exactsolution(100);
-tb = 0.2*1:100;
-yaprox(100)-yexact(100)
-plot(tb,yaprox,'ro',tb,yexact)
+  A = bmatrix(n);
+  b = x(n);
+  [L,U, counter] = bandedLU(A,3,3);
+
+  y = ForwardSolution(L, b);
+  yaprox = Solution(U, y);
+
+  yexact = exactsolution(n);
+  tb = 0.2*1:n;
+  yaprox(n)-yexact(n)
+  counter
+  plot(tb,yaprox,'ro',tb,yexact)
+end
+

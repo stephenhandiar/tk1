@@ -25,7 +25,7 @@
 function X = ForwardSolution (A, b)
 [n,n] = size(A);
 X = zeros(n,1);
-X(1) = b(1)/A(1,1)
+X(1) = b(1)/A(1,1);
 for i = 2:1:n % i starts at 2, end at 4, w/ steps of 1
   X(i) = (b(i)-A(i,1:i-1)*X(1:i-1))/A(i,i);
 end
