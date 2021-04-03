@@ -1,4 +1,4 @@
-## Copyright (C) 2021 StephenHandiar24
+## Copyright (C) 2021 Anggardha Febriano
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -14,24 +14,22 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} LUbanded (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} Solution (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
-## Author: StephenHandiar24 <StephenHandiar24@LAPTOP-7HOIN5KT>
-## Created: 2021-03-29
+## Author: Anggardha Febriano <anggardhafebriano@Anggardhas-MacBook-Pro.local>
+## Created: 2021-04-01
 
-function [L,U] = LUbanded(A)
-[n,n]=size(A); %p
-L=I; % matrik identitas
-for k=1:n-1
-  for i=k+1:min(k+3,n)
-    L(i,k)=A(i,k)/A(k,k);
-    for j=k+1:min(k+3,n)
-      A(i,j)=A(i,j)-L(i,k)*A(k,j);
-    end
-  end
+function X = BackwardSolution (A, b)
+[n,n] = size(A);
+
+U = A;
+
+# Ux = b
+X(n,1) = b(n)/U(n,n);
+for i=n-1:-1:1
+  X(i,1) = (b(i) - U(i,i+1:n)*X(i+1:n,1))/U(i,i);
 end
-U=A;
 endfunction

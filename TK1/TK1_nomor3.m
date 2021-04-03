@@ -14,12 +14,9 @@ for k=1:3
   [L,U, counter] = bandedLU(A,3,3);
 
   y = ForwardSolution(L, b);
-  yaprox = Solution(U, y);
+  yaprox = BackwardSolution(U, y);
 
   yexact = exactsolution(n);
   tb = 0.2*1:n;
   yaprox(n)-yexact(n)
-  counter
-  plot(tb,yaprox,'ro',tb,yexact)
 end
-

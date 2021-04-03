@@ -14,29 +14,14 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} LU (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} centralDifference (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
 ## Author: Anggardha Febriano <anggardhafebriano@Anggardhas-MacBook-Pro.local>
-## Created: 2021-04-01
+## Created: 2021-04-03
 
-function [L, U] = LU (A)
-[n, n] = size(A);
-
-% initialize lower triangle matrix
-L = eye(n);
-
-for i=1:n-1
-  for j=i+1:n
-
-    L(j, i) = A(j,i)/A(i,i);
-
-    % Eliminasi baris i+1 .. n
-    A(j,:) = A(j,:) - L(j, i) * A(i,:);
-  endfor
-endfor
-
-U = A;
+function result = centralDifference (x, h)
+  result = (functionY(x+h) - functionY(x-h)) / (2*h);
 endfunction
