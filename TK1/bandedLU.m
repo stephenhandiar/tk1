@@ -22,21 +22,22 @@
 ## Author: Anggardha Febriano <anggardhafebriano@Anggardhas-MacBook-Pro.local>
 ## Created: 2021-04-02
 
-function [L,U, counter] = bandedLU(A,p,q)
+function [L,U,counter] = bandedLU(A,p,q)
   [n,n] = size(A);
-  counter = 0;
   L = eye(n);
+  counter = 0;
   for k = 1:n-1
     m = min(q+k,n); % Measure max row index that contains non zero value
     for i = k+1:m
       leftBand = min(i-1,q); % Measure bend length in the left side 
       rightBand = min(n-i,p); % Measure bend length in the right side
       maxlength = min(k+leftBand+rightBand,n); % Calculate max index for numbers that contained in the band area
-      L(i,k) = A(i,k)/A(k,k);
-      counter = counter + 1;
-      A(i,k:maxlength) = A(i,k:maxlength) - L(i,k)*A(k,k:maxlength); % Only calculate the number that contained in the band area
-      [temp, dim] = size(A(k,k:maxlength));
-      counter = counter + dim + dim;
+      L(i,k) = A(i,k)/A(k,k); %
+      counter+=1;
+      for j= k : maxlength
+        A(i,j) = A(i,j) - L(i,k)*A(k,j);
+        counter +=2;
+      endfor  
     endfor
   endfor
   U = A;
