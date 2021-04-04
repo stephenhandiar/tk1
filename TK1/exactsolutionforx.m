@@ -1,4 +1,4 @@
-## Copyright (C) 2021 Anggardha Febriano
+## Copyright (C) 2021 StephenHandiar24
 ##
 ## This program is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -14,14 +14,18 @@
 ## along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## -*- texinfo -*-
-## @deftypefn {} {@var{retval} =} functionY (@var{input1}, @var{input2})
+## @deftypefn {} {@var{retval} =} exactsolutionforx (@var{input1}, @var{input2})
 ##
 ## @seealso{}
 ## @end deftypefn
 
-## Author: Anggardha Febriano <anggardhafebriano@Anggardhas-MacBook-Pro.local>
-## Created: 2021-04-03
+## Author: StephenHandiar24 <StephenHandiar24@LAPTOP-7HOIN5KT>
+## Created: 2021-04-04
 
-function result = functionY (x)
-  result = 2*x^2 + x^3;
+function result = exactsolutionforx (x)
+f= -480*0.3*0.03*9.81;
+I= 0.3*(0.03**3)/12;
+E= 1.3*10**10;
+L= 2;
+result=(f/(24*E*I))*(x**2)*((x**2)-4*L*x+6*(L**2));
 endfunction
